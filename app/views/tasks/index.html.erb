@@ -1,0 +1,34 @@
+<!-- app/views/tasks/index.html.erb -->
+<h2>All yours task !</h2>
+
+<% @tasks.each do |task| %>
+
+  <%= link_to edittask_path(task), method: "get" do %>
+    <i class="fas fa-hammer"></i>
+  <% end %>
+
+  <%= link_to   task_path(task) do %>
+
+    <% if task.completed %>
+      <input name="checkbox_name" id="checkbox_id" type="checkbox" checked><%= "#{task.title}, #{task.details}."%>
+    <%  else  %>
+      <input name="checkbox_name" id="checkbox_id" type="checkbox"><%= "#{task.title}, #{task.details}."%>
+    <% end %>
+
+  <% end  %>
+
+  <%= link_to deletetask_path(task), method: "delete", data: { confirm: "Are you sure?" }  do %>
+    <i class="fas fa-trash"></i>
+  <% end %>
+
+  <br>
+
+<% end %>
+
+<br>
+<br>
+<br>
+<i class="fas fa-plus"></i>
+<%= link_to "Add a task", newtask_path %>
+
+
